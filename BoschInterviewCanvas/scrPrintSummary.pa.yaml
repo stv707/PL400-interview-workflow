@@ -1,0 +1,159 @@
+Screens:
+  scrPrintSummary:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(198, 0, 0, 1)
+    Children:
+      - conPrintPage:
+          Control: GroupContainer
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+          Children:
+            - txtPrintBrand:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Bosch interview application printout"
+                  Color: =RGBA(198, 0, 0, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Size: =24
+                  Text: ="BOSCH | INTERVIEW APPLICATION"
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =42
+            - txtPrintLine:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Internal interviewer summary"
+                  Color: =RGBA(90, 90, 90, 1)
+                  Font: =Font.'Segoe UI'
+                  Size: =14
+                  Text: ="Internal interviewer summary"
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =82
+            - txtPrintApplicant:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Applicant name for printing"
+                  Color: =RGBA(35, 35, 35, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Bold
+                  Size: =28
+                  Text: =Coalesce(varApplication.'Applicant Name', "Applicant")
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =142
+            - txtPrintCode:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Interview code for printing"
+                  Color: =RGBA(198, 0, 0, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Semibold
+                  Size: =18
+                  Text: |-
+                    ="Interview code: " & Coalesce(varApplication.'Interview Code', "")
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =190
+            - txtPrintEmail:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Applicant email for printing"
+                  Color: =RGBA(45, 45, 45, 1)
+                  Font: =Font.'Segoe UI'
+                  Size: =16
+                  Text: |-
+                    ="Email: " & Coalesce(varApplication.'Email Address', "Not provided")
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =260
+            - txtPrintPhone:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Applicant phone for printing"
+                  Color: =RGBA(45, 45, 45, 1)
+                  Font: =Font.'Segoe UI'
+                  Size: =16
+                  Text: |-
+                    ="Phone: " & Coalesce(varApplication.'Phone Number', "Not provided")
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =302
+            - txtPrintExperience:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Applicant experience for printing"
+                  AutoHeight: =true
+                  Color: =RGBA(45, 45, 45, 1)
+                  Font: =Font.'Segoe UI'
+                  Size: =16
+                  Text: |-
+                    ="Working experience: " & Coalesce(varApplication.'Working Experience', "Not provided")
+                  Width: =Parent.Width - 96
+                  Wrap: =true
+                  X: =48
+                  Y: =344
+            - txtPrintComments:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Applicant comments for printing"
+                  AutoHeight: =true
+                  Color: =RGBA(45, 45, 45, 1)
+                  Font: =Font.'Segoe UI'
+                  Size: =16
+                  Text: |-
+                    ="Comments: " & Coalesce(varApplication.'Application Comments', "None")
+                  Width: =Parent.Width - 96
+                  Wrap: =true
+                  X: =48
+                  Y: =454
+            - txtPrintStatus:
+                Control: ModernText
+                Properties:
+                  AccessibleLabel: ="Application status for printing"
+                  Color: =RGBA(80, 80, 80, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Semibold
+                  Size: =15
+                  Text: |-
+                    ="Status: " & If(IsBlank(varApplication.'Application Status'), "Unknown", Text(varApplication.'Application Status'))
+                  Width: =Parent.Width - 96
+                  X: =48
+                  Y: =570
+            - btnPrint:
+                Control: ModernButton
+                Properties:
+                  AccessibleLabel: ="Open browser print dialog and save as PDF"
+                  Appearance: =ButtonAppearance.Primary
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Semibold
+                  Height: =52
+                  Layout: =ButtonLayout.TextOnly
+                  OnSelect: =Print()
+                  Text: ="Print / Save as PDF"
+                  Visible: =Not(scrPrintSummary.Printing)
+                  Width: =220
+                  X: =48
+                  Y: =640
+            - btnPrintBack:
+                Control: ModernButton
+                Properties:
+                  AccessibleLabel: ="Return to application details"
+                  Appearance: =ButtonAppearance.Transparent
+                  Color: =RGBA(35, 35, 35, 1)
+                  Font: =Font.'Segoe UI'
+                  Height: =52
+                  Layout: =ButtonLayout.TextOnly
+                  OnSelect: =Navigate(scrApplicationDetails, ScreenTransition.None)
+                  Text: ="Back to details"
+                  Visible: =Not(scrPrintSummary.Printing)
+                  Width: =180
+                  X: =286
+                  Y: =640
