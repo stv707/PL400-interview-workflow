@@ -358,6 +358,20 @@ Application Status = Document Created
 Document File Name = Path or Name from Create file
 ```
 
+After Create file, add OneDrive for Business **Create share link** using the generated file
+ID. Configure the link as:
+
+```text
+Type: View
+Scope: Organization
+```
+
+Store the returned `WebUrl` output in `Document URL`. Do not use the raw `/Documents/...`
+path as a browser URL; it can produce a blank page instead of the Word viewer. Do not use
+an anonymous link for applicant documents.
+
+For a team-owned production design, prefer SharePoint and an organization-scoped link.
+
 Use the Dataverse row ID from the trigger as the record ID.
 
 ### Action 4: Send applicant email

@@ -1,6 +1,12 @@
 # Canvas App Checkpoint: Interviewer Lookup
 
-This document is the next implementation checkpoint after the Forms, Dataverse, Word, OneDrive, and email backend is verified.
+This document describes the completed interviewer Canvas App after the Forms, Dataverse,
+Word, OneDrive, email, and document URL backend was verified.
+
+## Completion status
+
+The coauthored app compiled successfully, passed App Checker, and was saved/published in
+the Development environment. The full Forms-to-Canvas test was completed successfully.
 
 ## App purpose
 
@@ -8,7 +14,7 @@ An internal interviewer enters the applicant's six-digit Interview Code. The app
 
 ## Screens
 
-### Search screen
+### Search screen — `Screen1`
 
 Controls:
 
@@ -18,7 +24,7 @@ Controls:
 - Validation label.
 - Optional recent lookup result.
 
-### Details screen
+### Details screen — `scrApplicationDetails`
 
 Display:
 
@@ -79,6 +85,23 @@ If Dataverse stores a secure URL:
 Launch(varApplication.'Document URL')
 ```
 
+`Document URL` must contain the Word viewer URL returned by the OneDrive **Create share
+link** action. Do not use the raw OneDrive file path.
+
+## Print summary — `scrPrintSummary`
+
+The app contains a dedicated portrait print screen. Its button uses:
+
+```powerfx
+Print()
+```
+
+The interviewer selects **Save as PDF** in the browser print dialog. This creates a PDF
+of the Canvas summary without requiring a physical printer.
+
+The generated Word document remains available through **Open Word document** when the
+interviewer needs the original document layout.
+
 If only the OneDrive path is stored, use a Power Automate flow or a controlled document-link strategy. Do not expose anonymous links to applicant documents.
 
 ## Security
@@ -88,6 +111,23 @@ If only the OneDrive path is stored, use a Power Automate flow or a controlled d
 - Give the interviewer read access to the document location.
 - Do not share the app with public applicants.
 - Avoid a gallery that lists all applicants by default.
+
+## Verified end-to-end test
+
+The complete scenario was tested with a real Microsoft Forms submission:
+
+```text
+Forms response
+  → Dataverse row
+  → Interview Code
+  → Word document
+  → OneDrive file
+  → Document URL
+  → applicant email
+  → Canvas exact-code lookup
+  → Word viewer launch
+  → Save as PDF print screen
+```
 
 ## Test cases
 

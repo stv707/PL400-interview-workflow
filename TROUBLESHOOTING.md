@@ -149,7 +149,40 @@ LookUp(
 )
 ```
 
-## 11. Wrong environment
+## 11. Document URL is blank
+
+The current training implementation creates an organization-scoped View link from the
+generated OneDrive file ID and stores the returned `WebUrl`. Check that:
+
+- The document flow runs after Create file succeeds.
+- Create share link runs after Create file succeeds.
+- The Dataverse Update row action includes `Document URL`.
+- The URL expression reads `@body('Create_share_link')?['WebUrl']`.
+- The interviewer has permission to the OneDrive location.
+
+Do not use anonymous sharing links for applicant documents. Do not store the raw
+`/Documents/...` path as the launch URL. For production, use a SharePoint library and an
+organization-scoped link or a controlled document-access flow.
+
+## 12. Raw OneDrive path opens a blank page
+
+Do not store or launch a URL such as:
+
+```text
+https://.../Documents/bcp-interview/InterviewApplication_123456.docx
+```
+
+That is a file path, not necessarily the Word viewer URL. Use the `WebUrl` returned by
+OneDrive **Create share link** instead. A valid viewer URL normally contains a Word
+viewer route such as `/:w:/...`.
+
+## 13. Canvas Print button does not print the Word document
+
+Canvas `Print()` prints the current Canvas screen. It does not print the Word document
+binary. Use the **Open Word document** button for the original Word file, or use the
+dedicated `scrPrintSummary` screen and select **Save as PDF** in the browser print dialog.
+
+## 14. Wrong environment
 
 Before making changes, verify:
 

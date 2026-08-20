@@ -38,7 +38,7 @@ Open the generated document
 - `STUDENT-LAB.md` — complete student implementation guide.
 - `ARCHITECTURE.md` — design decisions, data model, security, and ALM.
 - `TROUBLESHOOTING.md` — common failures and recovery steps.
-- `CANVAS-APP-NEXT.md` — Canvas App implementation checkpoint.
+- `CANVAS-APP-NEXT.md` — Canvas App implementation and testing guide.
 - `InterviewApplicationTemplatev2.docx` — recommended Word template with six native content controls.
 - `InterviewApplicationTemplate.docx` — earlier template retained for comparison only; use `v2` for the lab.
 - `create_template.py` — original local template-generation experiment; not required for the student lab.
@@ -53,7 +53,7 @@ Open the generated document
 6. Build the Dataverse-to-document-and-email flow.
 7. Test the backend end to end.
 8. Build the interviewer Canvas App.
-9. Test the Canvas lookup and document link.
+9. Test the Canvas lookup, Word viewer link, and Save as PDF print screen.
 10. Export the solution and document environment-specific configuration.
 
 ## Important implementation rule
@@ -80,3 +80,24 @@ This folder is intended for GitHub distribution. Do not commit:
 - `.env` files, access tokens, passwords, or screenshots containing personal data.
 
 Students must replace all environment-specific values in their own environment.
+
+## Verified demonstration outcome
+
+The complete demonstration has been tested successfully:
+
+```text
+Microsoft Forms submission
+  → Dataverse application row
+  → six-digit Interview Code
+  → populated Word document
+  → OneDrive file
+  → organization-scoped Word viewer URL in Dataverse
+  → applicant email
+  → Canvas App exact-code lookup
+  → Open Word document
+  → Canvas print summary and browser Save as PDF
+```
+
+The Canvas App uses the Dataverse `Document URL` value returned by the OneDrive
+**Create share link** action. Do not construct a launch URL from the raw
+`/Documents/...docx` path; that path can open a blank page instead of the Word viewer.

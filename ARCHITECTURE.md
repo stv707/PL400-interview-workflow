@@ -11,12 +11,13 @@
 | Document storage | OneDrive for Business for the lab; SharePoint recommended for production |
 | Applicant notification | Office 365 Outlook |
 | Interviewer retrieval | Canvas App exact code lookup |
+| Interviewer PDF output | Canvas portrait print screen using `Print()` and browser Save as PDF |
 | Processing visibility | Application Status choice |
 | Failure diagnostics | Error Details column and Catch scope |
 
 ## Data ownership
 
-Dataverse owns the application record and workflow state. Microsoft Forms is only the intake surface. OneDrive owns the generated document for this exercise. The Dataverse row stores the document path or URL so the application and artifact remain associated.
+Dataverse owns the application record and workflow state. Microsoft Forms is only the intake surface. OneDrive owns the generated document for this exercise. The Dataverse row stores both the document path and a usable document URL so the application and artifact remain associated.
 
 ## Tables and relationships
 
@@ -124,7 +125,13 @@ The flow should never silently discard an application.
 
 ## Storage recommendation
 
-OneDrive is acceptable for the student lab because it makes the connector setup simple. For a production recruitment solution, use a SharePoint document library because it provides:
+OneDrive is acceptable for the student lab because it makes the connector setup simple. In
+the verified training implementation, the flow creates an organization-scoped View link
+from the generated OneDrive file ID and stores the returned `WebUrl` in `Document URL`.
+The raw `/Documents/...` path is retained separately as `Document File Name` and is not
+used as the browser launch URL.
+
+For a production recruitment solution, use a SharePoint document library because it provides:
 
 - Team ownership.
 - Central permissions.
@@ -160,7 +167,8 @@ The Canvas App should:
 2. Validate that the input contains six digits.
 3. Perform an exact Dataverse lookup.
 4. Display the application information.
-5. Open the associated document using a secured URL or controlled flow.
+5. Open the associated document using the organization-scoped Word viewer URL.
+6. Navigate to a print-friendly summary screen and use `Print()` to save a PDF through the browser print dialog.
 
 Example Power Fx pattern when `Interview Code` is stored as text:
 
@@ -175,6 +183,19 @@ Set(
 ```
 
 Do not use an unfiltered gallery exposing every applicant to every interviewer.
+
+The verified Canvas App contains three screens:
+
+```text
+Screen1                 — exact six-digit code search
+scrApplicationDetails   — applicant details and document actions
+scrPrintSummary         — printable summary for browser Save as PDF
+```
+
+Canvas `Print()` prints the Canvas summary screen. It does not silently control a
+physical Windows printer and it does not print the Word file binary directly. The
+interviewer can choose **Save as PDF** in the browser dialog or select an installed
+printer if required.
 
 ## ALM notes
 
