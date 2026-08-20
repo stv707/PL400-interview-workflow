@@ -1,0 +1,20 @@
+# Local and secret files
+.env
+*.token
+*.secret
+*.pem
+*.pfx
+
+# Power Platform exports that may contain environment-specific references
+*.zip
+solution-export/
+
+# Local test output
+runs/
+logs/
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
