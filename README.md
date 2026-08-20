@@ -39,6 +39,7 @@ Open the generated document
 - `ARCHITECTURE.md` — design decisions, data model, security, and ALM.
 - `TROUBLESHOOTING.md` — common failures and recovery steps.
 - `CANVAS-APP-NEXT.md` — Canvas App implementation and testing guide.
+- `BoschInterviewCanvas/` — coauthored YAML reference source; not a direct Studio import package.
 - `InterviewApplicationTemplatev2.docx` — recommended Word template with six native content controls.
 - `InterviewApplicationTemplate.docx` — earlier template retained for comparison only; use `v2` for the lab.
 - `create_template.py` — original local template-generation experiment; not required for the student lab.
@@ -80,6 +81,22 @@ This folder is intended for GitHub distribution. Do not commit:
 - `.env` files, access tokens, passwords, or screenshots containing personal data.
 
 Students must replace all environment-specific values in their own environment.
+
+## How students should use the Canvas source
+
+Power Apps Studio does not provide a normal "paste YAML" or "upload `.pa.yaml`" action
+for updating an existing Canvas App. Students should follow `CANVAS-APP-NEXT.md` and
+build the screens and formulas manually in Studio.
+
+The YAML folder is useful for:
+
+- Studying the completed control hierarchy and Power Fx formulas.
+- Comparing a student's implementation with the reference design.
+- Advanced source-control workflows using PAC Canvas preview commands.
+- Coauthoring workflows where a Canvas Authoring session is available.
+
+Do not tell students to paste the YAML into Power Apps Studio. The YAML is not a
+student-facing direct import mechanism.
 
 ## Verified demonstration outcome
 

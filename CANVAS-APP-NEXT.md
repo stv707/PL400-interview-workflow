@@ -1,6 +1,12 @@
 # Canvas App: Interviewer Lookup and PDF Printing
 
-This guide explains how a student can build the internal interviewer Canvas App manually, or study the coauthored YAML reference implementation in `BoschInterviewCanvas/`.
+This guide explains how a student can build the internal interviewer Canvas App manually,
+or study the coauthored YAML reference implementation in `BoschInterviewCanvas/`.
+
+> **Important:** The normal Power Apps Studio experience does not allow a student to paste
+> `.pa.yaml` into an existing Canvas App or upload it as a direct app update. The primary
+> student path in this lab is manual construction in Studio. The YAML is a reference and
+> source-control artifact.
 
 The app is built after the Forms, Dataverse, Word, OneDrive, email, and `Document URL` backend is working.
 
@@ -24,6 +30,53 @@ BoschInterviewCanvas/scrPrintSummary.pa.yaml
 ```
 
 Do not commit or edit `_EditorState.pa.yaml`; Power Apps Studio owns that file.
+
+## How students should use this repository
+
+### Recommended path — build manually in Studio
+
+Students should:
+
+1. Create a blank tablet Canvas App inside their solution.
+2. Add the Dataverse `Interview Applications` data source.
+3. Create the three screens manually.
+4. Add the controls using the names in this guide.
+5. Copy the Power Fx formulas into the matching control properties.
+6. Save, preview, test, and publish from Power Apps Studio.
+
+This is the supported teaching path because it teaches the actual maker experience and
+lets each student bind the app to the logical names in their own environment.
+
+### YAML reference path — study, compare, or advanced source control
+
+The YAML files show:
+
+- Screen structure.
+- Control names.
+- Layout properties.
+- Power Fx formulas.
+- Print-screen behavior.
+
+Students can open the files in a text editor and compare them with their Studio design.
+They should not paste the files into the Studio formula bar or expect Studio to import them
+through the normal Canvas App UI.
+
+### Optional advanced PAC path
+
+PAC exposes preview commands for packing and unpacking Canvas source:
+
+```bash
+pac canvas pack --sources <source-directory> --msapp <output.msapp> --layout SourceCode
+pac canvas unpack --msapp <input.msapp> --sources <output-directory> --layout SourceCode
+```
+
+This is an advanced source-control workflow and is not required for the student lab. The
+commands validate/package source; they do not by themselves prove that a live Canvas App
+was saved or published in Studio. Students must still verify the target environment,
+data-source bindings, preview behavior, save, and publish state.
+
+Do not edit `_EditorState.pa.yaml`. Do not treat a successful local pack or compile as
+proof that the live app changed.
 
 ## Prerequisites
 
