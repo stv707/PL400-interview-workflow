@@ -77,7 +77,7 @@ A Canvas App can be built successfully but still point to the wrong environment 
 
 Stop here and confirm that one completed application and its six-digit code are visible.
 
-**Expected result:** `DONE — backend record verified.`
+
 
 ## Checkpoint 1 — Create the blank Canvas App
 
@@ -102,7 +102,7 @@ Screen1
 
 Confirm that the app opens in Power Apps Studio and contains a blank first screen.
 
-**Expected result:** `DONE — blank tablet Canvas App created in the Development solution.`
+
 
 ## Checkpoint 2 — Add the Dataverse table
 
@@ -123,7 +123,7 @@ If the table is not listed:
 
 Select the table in the Data pane and confirm its fields are available to formulas.
 
-**Expected result:** `DONE — Interview Applications is connected.`
+
 
 ## Checkpoint 3 — Prepare the search screen
 
@@ -304,7 +304,7 @@ Select **Preview** and test:
 
 Do not continue until invalid input is rejected.
 
-**Expected result:** `DONE — search and six-digit validation work.`
+
 
 ## Checkpoint 4 — Create the applicant details screen
 
@@ -509,7 +509,7 @@ Use a completed test record and select **Open Word document**.
 
 **Expected result:** the generated Word document opens in the authenticated Microsoft viewer.
 
-**Expected result:** `DONE — Word viewer link opens.`
+
 
 ## Checkpoint 6 — Add the print-summary screen
 
@@ -624,7 +624,7 @@ Not(scrPrintSummary.Printing)
 
 Canvas `Print()` prints the Canvas summary screen. It does not print the original Word binary directly and does not silently select a physical printer.
 
-**Expected result:** `DONE — Canvas summary saved as a readable PDF.`
+
 
 ## Checkpoint 7 — Improve the layout
 
@@ -690,7 +690,7 @@ Save = stores the draft
 Publish = makes the version available to users
 ```
 
-**Expected result:** `DONE — app saved, published, and tested from the published version.`
+
 
 ## Checkpoint 9 — Share securely
 
