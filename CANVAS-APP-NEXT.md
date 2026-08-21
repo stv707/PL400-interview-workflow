@@ -27,18 +27,6 @@ scrPrintSummary
   Print Canvas summary and save as PDF
 ```
 
-## Important: YAML is reference-only
-
-Power Apps Studio does not provide a normal **paste YAML** or **upload `.pa.yaml`** action for an existing Canvas App.
-
-For this student lab, build the app manually in Power Apps Studio. The folder below is only a reference implementation for studying controls and formulas:
-
-```text
-BoschInterviewCanvas/
-```
-
-Students may read the YAML files, but must not paste them into the formula bar or assume that compiling them changes a live app.
-
 ## Prerequisites
 
 Complete the Forms, Dataverse, and Power Automate parts of the interview workflow first.
@@ -770,19 +758,6 @@ That is expected. `Print()` prints the Canvas print-summary screen. Use **Open W
 ### Back does not work in Preview
 
 Start Preview from `Screen1`. Navigation history may not exist if Preview starts directly on another screen.
-
-## YAML and advanced source-control note
-
-The repository includes a coauthored YAML reference. It is useful for comparing screen structure, control names, and formulas. It is not the normal student build method.
-
-Advanced PAC commands exist for source-control workflows:
-
-```bash
-pac canvas pack --sources <source-directory> --msapp <output.msapp> --layout SourceCode
-pac canvas unpack --msapp <input.msapp> --sources <output-directory> --layout SourceCode
-```
-
-These commands are optional, preview-oriented tooling. A successful local compile or pack does not prove that a live Canvas App was saved or published. Always verify the app in Studio and test the published version.
 
 ## Completion evidence
 
